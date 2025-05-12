@@ -38,11 +38,15 @@ jobs:
     - name: Get libyaml-cpp
       run: git clone https://github.com/jasonjei/libyaml-cpp
   
+    - name: Compile Itemz daemon
+      working-directory: ./itemz-daemon
+      run: |
+        make -j$(nproc)
+
     - name: Compile Itemzflow
       working-directory: ./itemzflow
       run: |
-        chmod +x ./build.sh
-        ./build.sh
+        make -j$(nproc)
 
     - uses: actions/upload-artifact@v4
       with:
