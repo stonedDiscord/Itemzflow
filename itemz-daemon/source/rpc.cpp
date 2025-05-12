@@ -10,6 +10,7 @@
 #include <signal.h>
 #include <stdbool.h>
 #include <sys/socket.h>
+#include <new>
 #include <user_mem.h>
 #include <ctype.h>
 #include <mutex>
