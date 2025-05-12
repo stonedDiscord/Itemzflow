@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     container: orbisdev/orbisdev:latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
@@ -25,7 +25,7 @@ jobs:
       working-directory: ./itemzflow
       run: ./build.sh
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
-        name: bin-${{ steps.slug.outputs.sha8 }}
+        name: bin
         path: ./bin/
