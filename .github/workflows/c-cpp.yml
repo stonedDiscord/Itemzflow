@@ -20,33 +20,38 @@ jobs:
       run: |
         apk add ncurses-dev make wget git
 
-    - name: Compile libdumper
+    - name: Build libdumper
       working-directory: ./external/libdumper
       run: |
         make -j$(nproc)
+        make install
 
-    - name: Compile libfuse
+    - name: Build libfuse
       working-directory: ./external/libfuse
       run: |
         make -j$(nproc)
+        make install
 
     - name: Compile taglib
       working-directory: ./external/taglib
       run: |
         make -j$(nproc)
+        make install
 
-    - name: Get libyaml-cpp
-      run: git clone https://github.com/jasonjei/libyaml-cpp
-  
     - name: Compile Itemz daemon
       working-directory: ./itemz-daemon
       run: |
         make -j$(nproc)
+        make oelf
+        make eboot
 
     - name: Compile Itemzflow
       working-directory: ./itemzflow
       run: |
         make -j$(nproc)
+        make oelf
+        make eboot
+        make pkg_build
 
     - uses: actions/upload-artifact@v4
       with:
