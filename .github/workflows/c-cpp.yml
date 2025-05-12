@@ -19,8 +19,23 @@ jobs:
     - name: Install dependencies
       run: |
         apk add ncurses-dev wget
-    
-    - name: Compile RA
+
+    - name: Compile libdumper
+      working-directory: ./external/libdumper
+      run: |
+        make
+
+    - name: Compile libfuse
+      working-directory: ./external/libfuse
+      run: |
+        make
+
+    - name: Compile taglib
+      working-directory: ./external/taglib
+      run: |
+        make
+  
+    - name: Compile Itemzflow
       working-directory: ./itemzflow
       run: |
         chmod +x ./build.sh
