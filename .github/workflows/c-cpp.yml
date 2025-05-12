@@ -18,7 +18,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk add ncurses-dev wget
+        apk add ncurses-dev make wget
 
     - name: Compile libdumper
       working-directory: ./external/libdumper
@@ -34,6 +34,9 @@ jobs:
       working-directory: ./external/taglib
       run: |
         make
+
+    - name: Get libyaml-cpp
+      run: git clone https://github.com/jasonjei/libyaml-cpp
   
     - name: Compile Itemzflow
       working-directory: ./itemzflow
