@@ -22,7 +22,9 @@ jobs:
     
     - name: Compile RA
       working-directory: ./itemzflow
-      run: ./build.sh
+      run: |
+        chmod +x ./build.sh
+        ./build.sh
 
     - uses: actions/upload-artifact@v4
       with:
