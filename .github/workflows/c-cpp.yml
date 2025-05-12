@@ -18,22 +18,22 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk add ncurses-dev make wget
+        apk add ncurses-dev make wget git
 
     - name: Compile libdumper
       working-directory: ./external/libdumper
       run: |
-        make
+        make -j$(nproc)
 
     - name: Compile libfuse
       working-directory: ./external/libfuse
       run: |
-        make
+        make -j$(nproc)
 
     - name: Compile taglib
       working-directory: ./external/taglib
       run: |
-        make
+        make -j$(nproc)
 
     - name: Get libyaml-cpp
       run: git clone https://github.com/jasonjei/libyaml-cpp
