@@ -37,6 +37,7 @@
 #include <unistd.h>
 #include "utils.hpp"
 #include <sys/types.h>
+#include <new>
 #include <orbisNfs.h>
 
 /* config.h.  Generated from config.h.in by configure.  */
