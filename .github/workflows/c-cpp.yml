@@ -38,6 +38,13 @@ jobs:
         make -j$(nproc)
         make install
 
+    - name: Install liborbis
+      working-directory: ./external/
+      run: |
+        git clone https://github.com/orbisdev/liborbis
+        cd liborbis
+        make clean all install
+
     - name: Compile Itemz daemon
       working-directory: ./itemz-daemon
       run: |
