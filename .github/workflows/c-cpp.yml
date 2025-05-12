@@ -18,8 +18,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk add ncurses-dev make bash python2
-        apk add libintl icu-dev wget
+        apk add ncurses-dev wget
     
     - name: Compile RA
       working-directory: ./itemzflow
