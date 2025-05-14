@@ -6,6 +6,9 @@ on:
   repository_dispatch:
     types: [run_build]
 
+env:
+  PS4SDK: '/usr/local/orbisdev'
+
 permissions:
   contents: read
 
@@ -14,16 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     container: orbisdev/orbisdev:latest
     steps:
-    - uses: actions/checkout@v4
-
     - name: Install dependencies
       run: |
         apk add ncurses-dev make wget git
+  
+    - name: Clone Itemzflow
+      uses: actions/checkout@v4
 
-    - name: Environments
+    - name: Clone liborbis
+      uses: actions/checkout@v4
+      with:
+        repository: orbisdev/liborbis
+        path: external/liborbis
+
+    - name: Install liborbis
+      working-directory: ./external/liborbis
       run: |
-        cd /usr/local/orbisdev
-        . ./orbisdev.sh
+        make clean all install
 
     - name: Build libdumper
       working-directory: ./external/libdumper
@@ -42,13 +52,6 @@ jobs:
       run: |
         make -j$(nproc)
         make install
-
-    - name: Install liborbis
-      working-directory: ./external/
-      run: |
-        git clone https://github.com/orbisdev/liborbis
-        cd liborbis
-        make clean all install
 
     - name: Compile Itemz daemon
       working-directory: ./itemz-daemon
