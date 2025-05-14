@@ -20,6 +20,11 @@ jobs:
       run: |
         apk add ncurses-dev make wget git
 
+    - name: Environments
+      run: |
+        cd /usr/local/orbisdev
+        . ./orbisdev.sh
+
     - name: Build libdumper
       working-directory: ./external/libdumper
       run: |
